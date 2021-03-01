@@ -1,0 +1,215 @@
+$highlight: #275efe;
+
+.field-group {
+  padding: 1em 0 0.5em;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  
+  input:not([type='checkbox']):not([type='radio']),
+  textarea {
+    display: block;
+    margin-top: 0.5em;
+    width: 100%;
+    font: inherit;
+  }
+}
+
+input,
+textarea {
+  font-size: 1em;
+  padding: 0.5em;
+  border-radius: 0.2em;
+  border: 1px solid #c2c3d9;
+  outline: none;
+  transition: 0.2s;
+  background: white;
+
+  &::placeholder {
+    color: #c2c3d9;
+  }
+
+  &:focus {
+    box-shadow: 0 0 3px rgba($highlight, 0.5) !important;
+    border-color: $highlight !important;
+  }
+
+  &[type='radio'],
+  &[type='checkbox'] {
+    margin: 0;
+    margin-right: 0.5em;
+    appearance: none;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    width: 0.4em;
+    height: 0.4em;
+    
+    &:after {
+      content: '•';
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      color: $highlight;
+      line-height: 0.5em;
+      text-align: center;
+      font-size: 2em;
+      transition: opacity 0.1s;
+    }
+    &:checked:after {
+      opacity: 1;
+    }
+  }
+
+  &[type='checkbox'] {
+    border-radius: 0.2em;
+
+    &:after {
+      font-size: 1em;
+      content: '✔';
+      line-height: 1em;
+    }
+  }
+}
+
+input[type="submit"] {
+  padding: .5em 1.5em;
+  cursor: pointer;
+  
+  &:hover {
+    background: #eef0fd;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 6em;
+  max-height: 10em;
+}
+
+.select {
+  position: relative;
+  outline: none;
+
+  &:focus &__selected {
+    box-shadow: 0 0 3px rgba($highlight, 0.5);
+    border-color: $highlight;
+  }
+
+  &--active {
+    .select__selected:after {
+      border-top-color: transparent;
+      border-bottom-color: #333;
+      top: calc(50% - 7.5px);
+    }
+    
+    .select__options {
+      display: block;
+    }
+  }
+
+  &__selected {
+    font-size: 1em;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    border: 1px solid #c2c3d9;
+    margin-top: 0.5em;
+    cursor: pointer;
+    position: relative;
+    background: white;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      border: 5px solid transparent;
+      border-top-color: #333;
+      top: calc(50% - 2.5px);
+      right: 1em;
+    }
+  }
+
+  &__options {
+    display: none;
+    position: absolute;
+    top: 3em;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+  }
+
+  &__item {
+    padding: 0.8em 0.5em;
+    cursor: pointer;
+    color: #888;
+    transition: 0.3s;
+
+    &--selected {
+      color: #333;
+      cursor: default;
+      background: #eef0fd;
+    }
+    
+    &:not(&--selected):hover {
+      color: #333;
+    }
+  }
+}
+
+.content--dark {
+  color: #5d5e70;
+  
+  input,
+  textarea,
+  .select__selected {
+    border-color: #373844;
+    background-color: #16171c;
+    color: #9ea0be;
+    
+    &:focus {
+      border-color: rgba($highlight, 0.8) !important;
+    }
+
+    &::placeholder {
+      color: #505162;
+    }
+    
+    &[type="submit"]:hover {
+      background: #262730;
+    }
+  }
+
+  .select {
+    &:focus .select__selected {
+      border-color: rgba($highlight, 0.8) !important;
+    }
+    
+    &__options {
+      background-color: #262730;
+    }
+    
+    &__item {
+      color: #5d5e70;
+      
+      &:hover,
+      &--selected {
+        color: #9ea0be !important;
+      }
+      
+      &--selected {
+        background: rgba(white, 0.03);
+      }
+    }
+  }
+}
