@@ -18,7 +18,8 @@ $highlight: #275efe;
 }
 
 input,
-textarea {
+textarea,
+button {
   font-size: 1em;
   padding: 0.5em;
   border-radius: 0.2em;
@@ -77,12 +78,17 @@ textarea {
   }
 }
 
+button,
 input[type="submit"] {
   padding: .5em 1.5em;
   cursor: pointer;
+  background: #6c5ce7;
+  border-color: #6c5ce7;
+  color: white;
   
   &:hover {
-    background: #eef0fd;
+    background: #7e6ff3;
+    
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   }
 }

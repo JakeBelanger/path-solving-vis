@@ -1,9 +1,13 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: ['./src/app/index.js', './src/styles/main.scss'],
+  target: 'web',
   module: {
     rules: [
       {
@@ -25,14 +29,26 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'webpack Boilerplate',
+      template: path.resolve(__dirname, './src/template.html'), // template file
+      filename: 'index.html', // output file
+    }),
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   resolve: {
     extensions: ['*', '.js'],
   },
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    contentBase: path.resolve(__dirname, './src'),
+    watchContentBase: true,
+    hot: true,
   },
 };
